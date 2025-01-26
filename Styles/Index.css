@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+  }
+  
+  header, footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #444;
+    color: #fff;
+  }
+  
+  #search-section {
+    text-align: center;
+    margin: 1rem 0;
+  }
+  
+  #search-input {
+    width: 300px;
+    padding: 8px;
+    margin-right: 8px;
+  }
+  
+  #search-button {
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  #results-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem;
+  }
+  
+  .movie-card {
+    background-color: #fff;
+    width: 200px;
+    margin: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .movie-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .movie-card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .movie-card .movie-info {
+    padding: 0.5rem;
+    text-align: center;
+  }
+  
+  .movie-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .movie-card p {
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  /* Responsive Tasarım (Basit Örnek) */
+  @media (max-width: 600px) {
+    #search-input {
+      width: 200px;
+    }
+    
+    .movie-card {
+      width: 150px;
+      margin: 0.5rem;
+    }
+  }
+  
