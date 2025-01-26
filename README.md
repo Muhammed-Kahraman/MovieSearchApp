@@ -35,10 +35,10 @@ Proje içerisinde OMDb API kullanımı için bir API anahtarı gerekmektedir. `S
 
 const apiKey = "YOUR_OMDB_API_KEY"; // Kendi OMDb API anahtarınızı buraya yazın.
 
-Katkıda Bulunma
+## Katkıda Bulunma
 Katkıda bulunmak isterseniz, lütfen bir pull request gönderin veya bir issue açın.
 
-Lisans
+## Lisans
 Bu proje The GNU General Public License v3.0 Lisansı ile lisanslanmıştır. Daha fazla bilgi için LICENSE dosyasına bakın.
 
 Bu `README.md` dosyası, projenizin yapısını, kurulumunu ve kullanımını açıklar. Ayrıca, OMDb API anahtarının nasıl kullanılacağını belirtir.
