@@ -16,18 +16,27 @@
 </head>
 <body>
 
-  <header>
-    <h1><a href="Index.html" style="text-decoration: none; color: white;">Film Arama Uygulaması</a></h1>
-  </header>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd;">
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="d-flex align-items-center gap-4">
+            <a class="navbar-brand text-center" href="Index.html">Movie Search App</a>
+            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#">Contact</a>
+        </div>
+    </div>
+</nav>
 
   <main>
-    <div id="loading-indicator" class="d-none">
-      <div class="spinner"></div>
-      <div class="loading-text">Loading, please wait...</div>
-    </div>
-    <section id="search-section">
-      <input type="text" id="search-input" placeholder="Film adı giriniz..." />
-      <button id="search-button">Ara</button>
+    <div id="spinnerOverlay" class="spinner-overlay">
+      <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+      </div>
+  </div>
+
+    <section id="search-section" class="d-flex justify-content-center"> 
+      <input class="form-control" type="text" id="search-input" placeholder="Enter movie name..." />
+      <input class="form-control" type="text" id="search-input2" placeholder="Enter janra name..." />
+      <button class="btn btn-primary" id="search-button">Search</button>
     </section>
     <section id="random_movie_area">
     </section>
@@ -35,9 +44,13 @@
     </section>
   </main>
 
-  <footer>
-    <p>Copyright © 2025</p>
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top" style="background-color: #e3f2fd;">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="mb-3 mb-md-0 text-body-secondary color_black">© 2025 Company, Inc</span>
+    </div>
   </footer>
-
 </body>
 </html>

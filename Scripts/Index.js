@@ -15,30 +15,42 @@ $(document).ready(function() {
       'sports-drama', 'biopic', 'spy-thriller', 'true-crime', 'war-documentary', 'revenge', 'sword-and-sorcery'
     ];
     
-    const randomTerm = randomSearchTerms[Math.floor(Math.random() *randomSearchTerms.length)];
-    $("#loading-indicator").removeClass("d-none");;
+    const randomTerm = randomSearchTerms[Math.floor(Math.random() * randomSearchTerms.length)];
+    document.getElementById('spinnerOverlay').classList.add('show');
+    
+    page = 1;
+  results = [];
+  function fetchMovies(apiKey, randomTerm, page = 1, results = []) {
     $.ajax({
-      url: `https://www.omdbapi.com/?apikey=${apiKey}&s=${randomTerm}`,
+      url: `https://www.omdbapi.com/?apikey=${apiKey}&s=${randomTerm}&page=${page}`,
       method: "GET",
       success: function(response) {
-        if(response.Response === "True") 
-        {
-          let divAreaId = "#random_movie_area";
-          displayResults(response.Search, divAreaId);
-          $("#loading-indicator").addClass("d-none");
-        } 
-        else 
-        {
+        if (response.Response === "True") {
+          results = results.concat(response.Search);
+ 
+          if (results.length < parseInt(response.totalResults) && response.Search.length === 10) {
+            fetchMovies(apiKey, randomTerm, page + 1, results);
+          }
+          else {
+            let divAreaId = "#random_movie_area";
+            displayResults(results, divAreaId);
+            document.getElementById('spinnerOverlay').classList.remove('show');
+          }
+        } else {
           $("#random_movie_area").empty();
           $("#random_movie_area").append(`<p>Film bulunamadı veya bir hata oluştu.</p>`);
-          $("#loading-indicator").addClass("d-none");
+          document.getElementById('spinnerOverlay').classList.remove('show');
         }
       },
       error: function() {
         alert("Bir hata oluştu. Lütfen tekrar deneyin.");
-        $("#loading-indicator").addClass("d-none");
+        document.getElementById('spinnerOverlay').classList.remove('show');
       }
     });
+  }
+ 
+  // Kullanım:
+  fetchMovies(apiKey, randomTerm);
 
     $("#search-button").click(function() {
       searchMovies();
@@ -52,32 +64,32 @@ $(document).ready(function() {
   
     function searchMovies() {
       let query = $("#search-input").val().trim();
-      if(!query) {
+      let query2 = $("#search-input2").val().trim();
+      if(!query && !query2) {
         alert("Lütfen bir film adı giriniz.");
         return;
       }
-      $("#loading-indicator").removeClass("d-none");;
+      document.getElementById('spinnerOverlay').classList.add('show');
       $.ajax({
-        url: `https://www.omdbapi.com/?apikey=${apiKey}&s=${query}`,
+        url: `https://www.omdbapi.com/?apikey=${apiKey}&s=${query != "" ? query : query2}`,
         method: "GET",
         success: function(response) {
-          debugger
           if(response.Response === "True") 
           {
             let divAreaId = "#results-section";
             displayResults(response.Search, divAreaId);
-            $("#loading-indicator").addClass("d-none");
+            document.getElementById('spinnerOverlay').classList.remove('show');
           } 
           else 
           {
             $("#results-section").empty();
             $("#results-section").append(`<p>Film bulunamadı veya bir hata oluştu.</p>`);
-            $("#loading-indicator").addClass("d-none");
+            document.getElementById('spinnerOverlay').classList.remove('show');
           }
         },
         error: function() {
           alert("Bir hata oluştu. Lütfen tekrar deneyin.");
-          $("#loading-indicator").addClass("d-none");
+          document.getElementById('spinnerOverlay').classList.remove('show');
         }
       });
     }
@@ -88,7 +100,11 @@ $(document).ready(function() {
       movie_title.textContent = title;
       let movie_realese_date = document.createElement("p");
       movie_realese_date.textContent = year;
-      movie_info.append(movie_title, movie_realese_date);
+      movie_detail_button = document.createElement("button");
+      movie_detail_button.textContent = "Details";
+      movie_detail_button.classList.add("btn", "btn-primary", "btn-sm");
+      movie_detail_button.onclick = function() {};
+      movie_info.append(movie_title, movie_realese_date, movie_detail_button);
       return movie_info;
     }
     function displayResults(movies, divAreaId) {
