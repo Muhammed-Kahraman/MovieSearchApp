@@ -90,7 +90,7 @@ Yer imleri sayfası, kullanıcıların favori filmlerini görüntüleyebileceği
 Bu proje, OMDb API'sini kullanmak için bir API anahtarına ihtiyaç duyar. `Scripts/Index.js` dosyasındaki `apiKey` değişkenine kendi OMDb API anahtarınızı ekleyin. Bu anahtar, OMDb API'ye erişim sağlar ve film bilgilerini almanıza olanak tanır.
 
 ```javascript
-const apiKey = "YOUR_OMDB_API_KEY"; // Kendi OMDb API anahtarınızı buraya yazın.
+const apiKey = "YOUR_API_KEY"; // Kendi OMDb API anahtarınızı buraya yazın.
 ```
 
 ### Katkıda Bulunma
